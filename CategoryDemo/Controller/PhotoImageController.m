@@ -85,7 +85,7 @@
     self.imageView.image=[UIImage dm_imageWithColor:[UIColor orangeColor]];
 }
 - (IBAction)circulationRotate:(id)sender {
-    [self.imageView dm_addRotationAnimationTime:1.5 timeCount:MAX_CANON angle:M_PI*2.0];
+    [self.imageView dm_addRotationAnimationDuration:1.5 repeatCount:MAX_CANON angle:M_PI*2.0];
 
 }
 

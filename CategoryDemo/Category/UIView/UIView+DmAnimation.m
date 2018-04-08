@@ -9,12 +9,24 @@
 #import "UIView+DmAnimation.h"
 
 @implementation UIView (DmAnimation)
--(void)dm_addRotationAnimationTime:(CGFloat)time timeCount:(NSInteger)timeCount angle:(CGFloat)angle{
+-(void)dm_addRotationAnimationDuration:(CGFloat)duration repeatCount:(NSInteger)repeatCount angle:(CGFloat)angle{
     CABasicAnimation *rotationAnimation;
     rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
     rotationAnimation.toValue = [NSNumber numberWithFloat:angle];
-    rotationAnimation.duration = time;
-    rotationAnimation.repeatCount = timeCount;
+    rotationAnimation.duration = duration;
+    rotationAnimation.repeatCount = repeatCount;
     [self.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
+}
+@end
+
+@implementation UIView (DmTransition)
+-(void)dm_addTransitionAnimationDuration:(CGFloat)duration repeatCount:(NSInteger)repeatCount subtype:(NSString *)subtype type:(NSString *)type{
+    CATransition *animation = [CATransition animation];
+    animation.type = type;
+    animation.subtype = subtype;
+    animation.duration = duration;
+    animation.repeatCount=repeatCount;
+    [animation setValue:@"fade" forKey:@"animType"];
+    [self.layer addAnimation:animation forKey:nil];
 }
 @end
